@@ -5,13 +5,18 @@ import { useState } from "react";
 export default function Home() {
   const [task, setTask] = useState("");
   const [tasks, setTasks] = useState<string[]>([]);
+  const [error, setError] = useState("");
 
   const addTask = () => {
-    if (task.trim() === "") return;
+  if (task.trim() === "") {
+    setError("Please enter a task.");
+    return;
+  }
 
-    setTasks([...tasks, task.trim()]);
-    setTask("");
-  };
+  setTasks([...tasks, task.trim()]);
+  setTask("");
+  setError("");
+};
 
   const deleteTask = (index: number) => {
     setTasks(tasks.filter((_, i) => i !== index));
@@ -52,6 +57,12 @@ export default function Home() {
             Add Task
           </button>
         </div>
+
+        {error && (
+  <p className="text-red-500 text-sm mb-4">
+    {error}
+  </p>
+)}
 
         <div className="space-y-3">
           {tasks.length === 0 ? (
