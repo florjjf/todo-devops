@@ -19,8 +19,14 @@ export default function Home() {
 };
 
   const deleteTask = (index: number) => {
-    setTasks(tasks.filter((_, i) => i !== index));
-  };
+  const confirmed = window.confirm("Are you sure you want to delete this task?");
+
+  if (!confirmed) {
+    return;
+  }
+
+  setTasks(tasks.filter((_, i) => i !== index));
+};
 
   const completeTask = (index: number) => {
   const updatedTasks = [...tasks];
