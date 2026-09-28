@@ -23,10 +23,14 @@ export default function Home() {
   };
 
   const completeTask = (index: number) => {
-    const updatedTasks = [...tasks];
+  const updatedTasks = [...tasks];
+
+  if (!updatedTasks[index].startsWith("✓ ")) {
     updatedTasks[index] = "✓ " + updatedTasks[index];
-    setTasks(updatedTasks);
-  };
+  }
+
+  setTasks(updatedTasks);
+};
 
   return (
     <main className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
@@ -75,7 +79,15 @@ export default function Home() {
                 key={index}
                 className="flex items-center justify-between border rounded-lg p-3"
               >
-                <span className="text-gray-800">{item}</span>
+                <span
+                  className={
+                    item.startsWith("✓ ")
+                      ? "text-gray-400 line-through"
+                      : "text-gray-800"
+                  }
+                >
+                  {item}
+                </span>
 
                 <div className="flex gap-2">
                   <button
