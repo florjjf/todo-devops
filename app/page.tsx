@@ -44,6 +44,9 @@ export default function Home() {
         
         <h1 className="text-3xl font-bold text-center mb-6">
           TODO APPLICATION
+          <span className="block text-base font-normal text-blue-600 mt-2">
+            Version 1.1 Development
+          </span>
         </h1>
 
         <div className="flex gap-2 mb-6">
